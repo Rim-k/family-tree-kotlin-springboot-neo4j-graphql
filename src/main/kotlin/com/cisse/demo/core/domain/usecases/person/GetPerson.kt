@@ -8,4 +8,8 @@ interface GetPerson {
     fun byLastname(lastname: String): Collection<PersonDTO>
     fun all(size: Int?): Collection<PersonDTO>
     fun siblings(uuid: String): Collection<PersonDTO>
+    fun friends(uuid: String): Collection<PersonDTO>
+    fun mother(uuid: String): PersonDTO?
+    fun father(uuid: String): PersonDTO?
+    fun spouse(uuid: String): PersonDTO?
 }

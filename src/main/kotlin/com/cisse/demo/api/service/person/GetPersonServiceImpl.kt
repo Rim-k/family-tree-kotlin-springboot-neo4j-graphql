@@ -10,7 +10,15 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 class GetPersonImpl(val personRepository: PersonRepository) : GetPerson {
 
+    override fun mother(uuid: String) = personRepository.findMotherOf(uuid)?.toPersonDTO()
+
+    override fun father(uuid: String) = personRepository.findFatherOf(uuid)?.toPersonDTO()
+
+    override fun spouse(uuid: String) = personRepository.findSpouseOf(uuid)?.toPersonDTO()
+
     override fun siblings(uuid: String) = personRepository.findSiblingsOf(uuid).map { it.toPersonDTO() }
+
+    override fun friends(uuid: String) = personRepository.findFriendsOf(uuid).map { it.toPersonDTO() }
 
     override fun byUuid(uuid: String) = personRepository.findByUuid(uuid)?.toPersonDTO()
 

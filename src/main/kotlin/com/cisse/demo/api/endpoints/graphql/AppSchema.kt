@@ -41,9 +41,33 @@ class AppSchema(private val getPerson: GetPerson) {
 
         type<PersonDTO>{
 
+            property<PersonDTO?>("mother") {
+                resolver {
+                    person -> getPerson.mother(person.uuid!!)
+                }
+            }
+
+            property<PersonDTO?>("father") {
+                resolver {
+                    person -> getPerson.father(person.uuid!!)
+                }
+            }
+
+            property<PersonDTO?>("spouse") {
+                resolver {
+                    person -> getPerson.spouse(person.uuid!!)
+                }
+            }
+
             property<Collection<PersonDTO>>("siblings") {
                 resolver {
                     person -> getPerson.siblings(person.uuid!!)
+                }
+            }
+
+            property<Collection<PersonDTO>>("friends") {
+                resolver {
+                    person -> getPerson.friends(person.uuid!!)
                 }
             }
         }
