@@ -1,8 +1,8 @@
 CREATE (Abraham:Person {firstname:'Abraham', lastname: 'Simpson', birthdate: date(), gender: 'MALE'})
 CREATE (Mona:Person {firstname:'Mona', lastname: 'Simpson', birthdate: date(), gender: 'FEMALE'})
 CREATE (Clancy:Person {firstname:'Clancy', lastname: 'Simpson', birthdate: date(), gender: 'MALE'})
-CREATE (Jacqueline:Person {firstname:'Jacqueline', lastname: 'Simpson', birthdate: date(), gender: 'FEMALE'})
-CREATE (Herber:Person {firstname:'Herber', lastname: 'Simpson', birthdate: date(), gender: 'MALE'})
+CREATE (Jackie:Person {firstname:'Jackie', lastname: 'Simpson', birthdate: date(), gender: 'FEMALE'})
+CREATE (Herb:Person {firstname:'Herb', lastname: 'Simpson', birthdate: date(), gender: 'MALE'})
 CREATE (Homer:Person {firstname:'Homer', lastname: 'Simpson', birthdate: date(), gender: 'MALE'})
 CREATE (Marge:Person {firstname:'Marge', lastname: 'Simpson', birthdate: date(), gender: 'FEMALE'})
 CREATE (Patty:Person {firstname:'Patty', lastname: 'Simpson', birthdate: date(), gender: 'FEMALE'})
@@ -23,13 +23,13 @@ MERGE (f)-[:SPOUSE_OF]-(m)
 MATCH (f:Person {firstname:"Abraham"})
 MATCH(m:Person {firstname:"Mona"})
 MATCH (c:Person)
-WHERE c.firstname in ['Homer', 'Herber']
+WHERE c.firstname in ['Homer', 'Herb']
 MERGE (c)-[:HAS_FATHER]->(f)
 MERGE (c)-[:HAS_MOTHER]->(m)
 MERGE (f)-[:SPOUSE_OF]-(m)
 
 MATCH (f:Person {firstname:"Clancy"})
-MATCH (m:Person {firstname:"Jacqueline"})
+MATCH (m:Person {firstname:"Jackie"})
 MATCH (c:Person)
 WHERE c.firstname in ['Marge', 'Patty', 'Selma']
 MERGE (c)-[:HAS_FATHER]->(f)
