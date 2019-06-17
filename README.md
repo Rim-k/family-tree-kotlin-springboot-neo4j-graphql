@@ -98,6 +98,8 @@ You will be asked to login and change the default password: **neo4j/neo4j**.
 
 2- Init the database by running the cypher queries below or using the [database.cql](./database.cql) file
 
+![init databse](init-db.png)
+
 3- Start the application using
 
 ```bash
