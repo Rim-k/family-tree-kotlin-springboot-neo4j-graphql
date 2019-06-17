@@ -16,7 +16,7 @@ interface PersonRepository : Neo4jRepository<Person, String> {
     fun findByLastname(@Param("lastname") lastname: String): Collection<Person>
 
     @Query("MATCH (person:Person {uuid: {uuid}}) RETURN person")
-    fun findByUuid(@Param("uuid") uuid: String): Person
+    fun findByUuid(@Param("uuid") uuid: String): Person?
 
     @Query(FIND_SIBLINGS)
     fun findSiblingsOf(@Param("uuid") uuid: String): MutableSet<Person>

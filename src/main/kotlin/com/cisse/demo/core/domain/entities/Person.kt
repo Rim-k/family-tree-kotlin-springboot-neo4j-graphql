@@ -10,7 +10,7 @@ import java.time.LocalDate
 
 @NodeEntity
 class Person(
-        @Index(unique=true, primary = true) @Property(name = "uuid") var uuid: String? = null,
+        @Index(unique=true, primary = true) @Property(name = "uuid") var uuid: String,
         val firstname: String,
         val lastname: String,
         val birthName: String? = null,
@@ -57,7 +57,6 @@ class Person(
         father = father?.let {
             PersonDTO(it.uuid, it.firstname, it.lastname, it.birthName, it.birthdate, it.gender)
         },
-
         siblings = siblings.map { PersonDTO(it.uuid, it.firstname, it.lastname, it.birthName, it.birthdate, it.gender) }.toMutableSet(),
         friends = friends.map { PersonDTO(it.uuid, it.firstname, it.lastname, it.birthName, it.birthdate, it.gender) }.toMutableSet()
     )

@@ -3,7 +3,7 @@ package com.cisse.demo.api.dto
 import java.time.LocalDate
 
 data class PersonDTO(
-        val uuid: String? = null,
+        val uuid: String,
         val firstname: String,
         val lastname: String,
         val birthName: String?=null,
