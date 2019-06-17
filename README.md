@@ -1,8 +1,8 @@
 # Family tree sample with Spring Boot, Kotlin, GraphQL and Neo4j
 
-![The simpsons](simpsons.png)
-
 This is a simple app showing how to create a [GraphQL](https://graphql.org/) api in [Kotlin](https://kotlinlang.org/) backed by [Neo4J](https://neo4j.com/developer/?ref=home-2) and powered by [Spring Boot](https://spring.io/projects/spring-boot)
+
+![The simpsons](simpsons.png)
 
 ## Dependencies
 
@@ -20,12 +20,12 @@ This demo api uses the following dependencies
 
 The graph model is quite simple
 
-We have one type of node: a `Person` and 3 types of edges corresponding to the relationships (`HAS_FATHER`, `HAS_MOTHER`, `SPOUSE_OF`):
+We have one type of node: a `Person` and 3 types of edges corresponding to the relationships (`HAS_FATHER`, `HAS_MOTHER` and `SPOUSE_OF`):
 
 ```
 (Person)-[:HAS_MOTHER]->(Person)
 (Person)-[:HAS_FATHER]->(Person)
-(Person)-[:SPOUSE_OF]-(Person) // Undirected since it is bidirectionnal
+(Person)-[:SPOUSE_OF]-(Person) // undirected since it is bidirectionnal
 ```
 The siblings are calculated using the `HAS_FATHER` and `HAS_MOTHER` relations : two person with the same mother or father are siblings
 
@@ -91,17 +91,24 @@ Creating docker_neo4j_1 ... done
 ```
 
 You can access the database via [http://localhost:7474/](http://localhost:7474/)
+
 You will be asked to login and change the default password: **neo4j/neo4j**.
 
-**Note**: The application uses the password `secret`, you can use the same password to avoid changing the [application.yml](./src/main/resources/config/application.yml)
+**Note**: The application uses the password `secret`, you can use the same password or update the [application.yml](./src/main/resources/config/application.yml) with the correct password.
 
 2- Init the database by running the cypher queries below or using the [database.cql](./database.cql) file
+
+3- Start the application using
 
 ```bash
 $ ./gradlew bootRun
 ```
 
-## Querying the api: example
+## Querying the api
+
+Example
+
+`POST localhost:8080/graphql` 
 
 ```graphql
 {
@@ -111,19 +118,19 @@ $ ./gradlew bootRun
 	lastname,
 	birthdate,
 	spouse {
-		firstname,
-		siblings {
-			firstname
-		}
+	  firstname,
+	  siblings {
+		firstname
+	  }
 	}
 	mother {
-		firstname
+      firstname
 	},
 	father {
-		firstname
+	  firstname
 	}
 	siblings {
-		firstname
+	  firstname
 	}
   }
 }
