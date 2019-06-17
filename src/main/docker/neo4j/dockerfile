@@ -1,0 +1,5 @@
+FROM neo4j:3.5.5
+
+COPY *.jar /var/lib/neo4j/plugins/
+
+COPY neo4j.conf /var/lib/neo4j/conf/

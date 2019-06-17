@@ -1,0 +1,15 @@
+version: '3'
+services:
+  neo4j:
+    build: ./neo4j
+    image: neo4j-ce:3.5.5-graphaware-uuid-3.5.4
+    ports:
+    - "7474:7474"
+    - "7687:7687"
+    volumes:
+    - $HOME/neo4j-ce/data:/data
+    networks:
+    - demo
+
+networks:
+  demo:
