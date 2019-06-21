@@ -10,7 +10,7 @@ This demo api uses the following dependencies
 
 [Spring Boot](https://spring.io/projects/spring-boot#overview)
 
-[GraphQL Server - KGraphQL](https://github.com/pgutkowski/KGraphQL): A Pure Kotlin GraphQL implementation
+[GraphQL Server - KGraphQL](https://github.com/aPureBase/KGraphQL): A Pure Kotlin GraphQL implementation
 
 [Neo4J database](https://neo4j.com/developer/?ref=home-2): A NoSQL Graph database
 
