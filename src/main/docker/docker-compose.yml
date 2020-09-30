@@ -8,6 +8,8 @@ services:
     - "7687:7687"
     volumes:
     - $HOME/neo4j-ce/data:/data
+    environment:
+      - NEO4J_AUTH=neo4j/secret
     networks:
     - demo
 

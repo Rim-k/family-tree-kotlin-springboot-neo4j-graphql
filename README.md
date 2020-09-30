@@ -92,11 +92,9 @@ Creating docker_neo4j_1 ... done
 
 You can access the database via [http://localhost:7474/](http://localhost:7474/)
 
-You will be asked to login and change the default password: **neo4j/neo4j**.
+The default user/password are: **neo4j/secret**.
 
-**Note**: The application uses the password `secret`, you can use the same password or update the [application.yml](./src/main/resources/config/application.yml) with the correct password.
-
-2- Init the database by running the cypher queries below or using the [database.cql](./database.cql) file
+2- Init the database by running the cypher queries above or using the [database.cql](./database.cql) file
 
 ![init databse](init-db.png)
 
