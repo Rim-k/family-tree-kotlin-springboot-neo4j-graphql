@@ -1,6 +1,6 @@
 package com.cisse.demo.api.endpoints.graphql
 
-import com.github.pgutkowski.kgraphql.schema.Schema
+import com.apurebase.kgraphql.schema.Schema
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.PostMapping
@@ -19,7 +19,7 @@ class GraphQL (appSchema: AppSchema) {
     @PostMapping
     fun graphql(@RequestBody query: String): String {
         log.info("the graphql FIND_BY_FIRSTNAME_WITH_SIBLINGS: $query")
-        return schema.execute(query)
+        return schema.executeBlocking(query);
     }
 }
 

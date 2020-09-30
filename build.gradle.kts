@@ -1,22 +1,24 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "2.1.5.RELEASE"
-	id("io.spring.dependency-management") version "1.0.7.RELEASE"
-	kotlin("jvm") version "1.3.31"
-	kotlin("plugin.spring") version "1.3.31"
+	id("org.springframework.boot") version "2.3.4.RELEASE"
+	id("io.spring.dependency-management") version "1.0.10.RELEASE"
+	kotlin("jvm") version "1.4.10"
+	kotlin("plugin.spring") version "1.4.10"
 }
 
-val kgraphql_version = "0.3.0"
+val kgraphql_version = "0.15.0"
 val junit_version = "5.4.2"
+val gson_version = "2.8.5"
 
 group = "com.cisse"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
+
 repositories {
 	mavenCentral()
-	maven("https://dl.bintray.com/pgutkowski/Maven")
+	maven("https://jcenter.bintray.com/")
 }
 
 dependencies {
@@ -25,10 +27,13 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	compile("org.springframework.boot:spring-boot-devtools")
+	implementation("org.springframework.boot:spring-boot-devtools")
 
 	// Neo4j
 	implementation("org.springframework.boot:spring-boot-starter-data-neo4j")
+
+	implementation("eu.michael-simons.neo4j:neo4j-migrations-spring-boot-starter:0.0.13")
+	//compile group: 'eu.michael-simons.neo4j', name: 'neo4j-migrations-spring-boot-starter', version: '0.0.13'
 
 	// Jackson
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -38,10 +43,10 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
 	// GraphQL
-	compile("com.github.pgutkowski:kgraphql:$kgraphql_version")
+	implementation("com.apurebase:kgraphql-ktor:$kgraphql_version")
 
 	// Json
-	compile("com.google.code.gson:gson:2.8.5")
+	implementation("com.google.code.gson:gson:$gson_version")
 
 	// Testing
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -49,6 +54,7 @@ dependencies {
 	testImplementation("org.junit.jupiter:junit-jupiter:$junit_version")
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junit_version")
 }
+
 
 tasks.withType<Test> {
 	useJUnitPlatform()
@@ -69,6 +75,5 @@ tasks.withType<KotlinCompile> {
 }
 
 springBoot {
-
 	mainClassName = "com.cisse.demo.ApplicationKt"
 }

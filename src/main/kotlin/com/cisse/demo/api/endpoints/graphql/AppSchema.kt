@@ -3,8 +3,7 @@ package com.cisse.demo.api.endpoints.graphql
 import com.cisse.demo.api.dto.Gender
 import com.cisse.demo.api.dto.PersonDTO
 import com.cisse.demo.core.domain.usecases.person.GetPerson
-import com.cisse.demo.exception.NotFoundException
-import com.github.pgutkowski.kgraphql.KGraphQL
+import com.apurebase.kgraphql.KGraphQL
 import org.springframework.stereotype.Component
 import java.time.LocalDate
 
