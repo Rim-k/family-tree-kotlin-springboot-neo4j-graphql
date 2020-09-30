@@ -11,6 +11,7 @@ CREATE (Bart:Person {firstname: 'Bart', lastname: 'Simpson', birthdate: date(), 
 CREATE (Lisa:Person {firstname:'Lisa', lastname: 'Simpson', birthdate: date(), gender: 'FEMALE'})
 CREATE (Maggie:Person {firstname: 'Maggie', lastname: 'Simpson', birthdate: date(), gender: 'FEMALE'})
 CREATE (Ling:Person {firstname: 'Ling', lastname: 'Simpson', birthdate: date(), gender: 'FEMALE'})
+;
 
 MATCH (f:Person {firstname:"Homer"})
 MATCH (m:Person {firstname:"Marge"})
@@ -19,6 +20,7 @@ WHERE (c.firstname in ['Bart', 'Lisa', 'Maggie'])
 MERGE (c)-[:HAS_FATHER]->(f)
 MERGE (c)-[:HAS_MOTHER]->(m)
 MERGE (f)-[:SPOUSE_OF]-(m)
+;
 
 MATCH (f:Person {firstname:"Abraham"})
 MATCH(m:Person {firstname:"Mona"})
@@ -27,6 +29,7 @@ WHERE c.firstname in ['Homer', 'Herber']
 MERGE (c)-[:HAS_FATHER]->(f)
 MERGE (c)-[:HAS_MOTHER]->(m)
 MERGE (f)-[:SPOUSE_OF]-(m)
+;
 
 MATCH (f:Person {firstname:"Clancy"})
 MATCH (m:Person {firstname:"Jacqueline"})
@@ -35,6 +38,7 @@ WHERE c.firstname in ['Marge', 'Patty', 'Selma']
 MERGE (c)-[:HAS_FATHER]->(f)
 MERGE (c)-[:HAS_MOTHER]->(m)
 MERGE (f)-[:SPOUSE_OF]-(m)
+;
 
 MATCH (c:Person {firstname:"Ling"})
 MATCH (m:Person {firstname:"Selma"})

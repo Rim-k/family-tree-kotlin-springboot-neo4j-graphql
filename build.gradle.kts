@@ -33,7 +33,6 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-neo4j")
 
 	implementation("eu.michael-simons.neo4j:neo4j-migrations-spring-boot-starter:0.0.13")
-	//compile group: 'eu.michael-simons.neo4j', name: 'neo4j-migrations-spring-boot-starter', version: '0.0.13'
 
 	// Jackson
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")

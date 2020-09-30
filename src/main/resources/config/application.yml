@@ -1,12 +1,14 @@
 server:
   port: 8080
 
+#debug: true
+
 spring:
   data:
     neo4j:
       username: neo4j
       password: secret
 
-logging:
-  level:
-    org.neo4j.ogm.drivers.bolt.request.BoltRequest: DEBUG
+#logging:
+#  level:
+#    org.neo4j.ogm.drivers.bolt.request.BoltRequest: DEBUG
