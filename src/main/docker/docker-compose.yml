@@ -1,8 +1,7 @@
-version: '3'
+version: '3.8'
 services:
-  neo4j:
+  database:
     build: ./neo4j
-    image: neo4j-ce:3.5.5-graphaware-uuid-3.5.4
     ports:
     - "7474:7474"
     - "7687:7687"
@@ -10,8 +9,13 @@ services:
     - $HOME/neo4j-ce/data:/data
     environment:
       - NEO4J_AUTH=neo4j/secret
-    networks:
-    - demo
 
-networks:
-  demo:
+  backend-api:
+    build: ./backend-api
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_ENDPOINT=bolt://database:7687
+      - DB_USERNAME=neo4j
+      - DB_PASSWORD=secret
+      - SPRING_PROFILES_ACTIVE=docker

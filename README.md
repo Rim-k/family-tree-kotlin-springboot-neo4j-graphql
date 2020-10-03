@@ -16,6 +16,8 @@ This demo api uses the following dependencies
 
 [Neo4J uuid](https://github.com/graphaware/neo4j-uuid): GraphAware Runtime Module that assigns a UUID to all nodes (and relationships) in the graph transparently
 
+[Neo4j Migrations](https://github.com/michael-simons/neo4j-migrations): Manages database changes.
+
 ## Graph Model
 
 The graph model is quite simple
@@ -47,6 +49,7 @@ CREATE (Bart:Person {firstname: 'Bart', lastname: 'Simpson', birthdate: date(), 
 CREATE (Lisa:Person {firstname:'Lisa', lastname: 'Simpson', birthdate: date(), gender: 'FEMALE'})
 CREATE (Maggie:Person {firstname: 'Maggie', lastname: 'Simpson', birthdate: date(), gender: 'FEMALE'})
 CREATE (Ling:Person {firstname: 'Ling', lastname: 'Simpson', birthdate: date(), gender: 'FEMALE'})
+;
 
 MATCH (f:Person {firstname:"Homer"})
 MATCH (m:Person {firstname:"Marge"})
@@ -55,6 +58,7 @@ WHERE (c.firstname in ['Bart', 'Lisa', 'Maggie'])
 MERGE (c)-[:HAS_FATHER]->(f)
 MERGE (c)-[:HAS_MOTHER]->(m)
 MERGE (f)-[:SPOUSE_OF]-(m)
+;
 
 MATCH (f:Person {firstname:"Abraham"})
 MATCH(m:Person {firstname:"Mona"})
@@ -63,6 +67,7 @@ WHERE c.firstname in ['Homer', 'Herber']
 MERGE (c)-[:HAS_FATHER]->(f)
 MERGE (c)-[:HAS_MOTHER]->(m)
 MERGE (f)-[:SPOUSE_OF]-(m)
+;
 
 MATCH (f:Person {firstname:"Clancy"})
 MATCH (m:Person {firstname:"Jacqueline"})
@@ -71,37 +76,20 @@ WHERE c.firstname in ['Marge', 'Patty', 'Selma']
 MERGE (c)-[:HAS_FATHER]->(f)
 MERGE (c)-[:HAS_MOTHER]->(m)
 MERGE (f)-[:SPOUSE_OF]-(m)
+;
 
 MATCH (c:Person {firstname:"Ling"})
 MATCH (m:Person {firstname:"Selma"})
 MERGE (c)-[:HAS_MOTHER]->(m)
+;
 ```
 
 ## Running the app
 
-1- Start the database using docker-compose 
+Simpy execute the script run.sh`
 
 ```bash
-$ cd src/main/docker
-
-$ docker-compose up -d
-
-Creating network "docker_demo" with the default driver
-Creating docker_neo4j_1 ... done
-```
-
-You can access the database via [http://localhost:7474/](http://localhost:7474/)
-
-The default user/password are: **neo4j/secret**.
-
-2- Init the database by running the cypher queries above or using the [database.cql](./database.cql) file
-
-![init databse](init-db.png)
-
-3- Start the application using
-
-```bash
-$ ./gradlew bootRun
+$ ./run.sh`
 ```
 
 ## Querying the api
@@ -134,6 +122,33 @@ Example
 	}
   }
 }
+```
+
+Here is the corresponding curl command
+```
+curl -X POST -i http://localhost:8080/graphql --data '{
+  person(firstname: "Homer") {
+	uuid,
+	firstname,
+	lastname,
+	birthdate,
+	spouse {
+	  firstname,
+	  siblings {
+		firstname
+	  }
+	}
+	mother {
+      firstname
+	},
+	father {
+	  firstname
+	}
+	siblings {
+	  firstname
+	}
+  }
+}'
 ```
 
 Response 

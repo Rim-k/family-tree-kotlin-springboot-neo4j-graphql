@@ -10,10 +10,13 @@ plugins {
 val kgraphql_version = "0.15.0"
 val junit_version = "5.4.2"
 val gson_version = "2.8.5"
+val spring_retry_version= "1.3.0"
+val spring_aspects_version= "5.2.9.RELEASE"
 
 group = "com.cisse"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.targetCompatibility = JavaVersion.VERSION_1_8
 
 
 repositories {
@@ -46,6 +49,10 @@ dependencies {
 
 	// Json
 	implementation("com.google.code.gson:gson:$gson_version")
+
+	// retry
+	implementation("org.springframework.retry:spring-retry:$spring_retry_version")
+	implementation("org.springframework:spring-aspects:$spring_aspects_version")
 
 	// Testing
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
